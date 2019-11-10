@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'AdminHome.dart';
+import 'profile.dart';
 
 class AdminPage extends StatefulWidget {
   @override
@@ -20,6 +21,7 @@ class _AdminPage extends State<AdminPage> {
   int _currentIndex = 0;
   final List<Widget>_children = [
     AdminHome(),
+    ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {

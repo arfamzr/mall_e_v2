@@ -17,15 +17,15 @@ class _CustAddDataState extends State<CustAddData> {
   TextEditingController controllerPass = new TextEditingController();
 
   void addData() async{
-    var url ="http://10.0.2.2/mall_e/custadddata.php";
+    var url ="http:// 172.20.10.3/mall_e/custadddata.php";
     Map<String,dynamic> user = await Auth.fetchAuth();
     print(user);
     var response = await http.post(url, body:{
-      "cust_name": controllerName.text,
-      "cust_email": controllerEmail.text,
-      "cust_pho": controllerPhone.text,
-      "cust_add": controllerAddress.text,
-      "cust_pass": controllerPass.text,
+      "name": controllerName.text,
+      "email": controllerEmail.text,
+      "phone": controllerPhone.text,
+      "addres": controllerAddress.text,
+      "password": controllerPass.text,
       'admin_id':user['admin_id']
     });
 

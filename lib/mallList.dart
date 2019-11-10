@@ -12,7 +12,7 @@ class MallList extends StatefulWidget {
 
 class _MallListState extends State<MallList> {
   Future<List> getData() async {
-    final response = await http.get("http://10.0.2.2/mall_e/mallgetdata.php");
+    final response = await http.get("http://172.20.10.3/mall_e/mallgetdata.php");
     if(response.statusCode == 200){
       return json.decode(response.body);
     }
@@ -67,7 +67,7 @@ class ListMall extends StatelessWidget{
                 ),
             child: new Card(
               child: new ListTile(
-                title: new Text(list[i]['mall_name']),
+                title: new Text(list[i]['name']),
                 leading: new Icon(Icons.local_mall),
                 subtitle: new Text("ID : ${list[i]['mall_id']}"),
               ),

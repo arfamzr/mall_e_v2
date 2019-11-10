@@ -21,13 +21,13 @@ class _AdminEditState extends State<AdminEdit> {
   TextEditingController controllerAddress;
 
   void editData(){
-    var url="http://10.0.2.2/mall_e/editdata.php";
+    var url="http:// 172.20.10.3/mall_e/editdata.php";
     http.post(url,body: {
       "admin_id": widget.list[widget.index]['admin_id'],
-      "admin_name": controllerName.text,
-      "admin_email": controllerEmail.text,
-      "admin_pho": controllerPhone.text,
-      "admin_add": controllerAddress.text,
+      "name": controllerName.text,
+      "email": controllerEmail.text,
+      "phone": controllerPhone.text,
+      "address": controllerAddress.text,
 
     });
   }
@@ -35,10 +35,10 @@ class _AdminEditState extends State<AdminEdit> {
   @override
   void initState(){
     controllerName= new TextEditingController(text: widget.list[widget.index]['admin_id']);
-    controllerName= new TextEditingController(text: widget.list[widget.index]['admin_name']);
-    controllerPhone= new TextEditingController(text: widget.list[widget.index]['admin_pho']);
-    controllerEmail= new TextEditingController(text: widget.list[widget.index]['admin_email']);
-    controllerAddress= new TextEditingController(text: widget.list[widget.index]['admin_add']);
+    controllerName= new TextEditingController(text: widget.list[widget.index]['name']);
+    controllerPhone= new TextEditingController(text: widget.list[widget.index]['phone']);
+    controllerEmail= new TextEditingController(text: widget.list[widget.index]['email']);
+    controllerAddress= new TextEditingController(text: widget.list[widget.index]['address']);
     super.initState();
   }
 

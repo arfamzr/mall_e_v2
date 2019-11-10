@@ -19,17 +19,17 @@ class _mallAddDataState extends State<mallAddData> {
   TextEditingController controllerPass = new TextEditingController();
 
   void addData() async{
-    var url ="http://10.0.2.2/mall_e/malladddata.php";
+    var url ="http://172.20.10.3/mall_e/malladddata.php";
     Map<String,dynamic> user = await Auth.fetchAuth();
     print(user);
     var response = await http.post(url, body:{
-      "mall_name": controllerName.text,
-      "mall_email": controllerEmail.text,
-      "mall_pho": controllerPhone.text,
-      "mall_add": controllerAddress.text,
+      "name": controllerName.text,
+      "email": controllerEmail.text,
+      "phone": controllerPhone.text,
+      "address": controllerAddress.text,
       "longitude": controllerLongitude.text,
       "latitude": controllerLatitude.text,
-      "mall_pass": controllerPass.text,
+      "password": controllerPass.text,
       'admin_id':user['admin_id']
     });
 

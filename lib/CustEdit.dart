@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import './CustList.dart';
+import './AdminHome.dart';
 
 class CustEdit extends StatefulWidget {
 
@@ -21,13 +21,13 @@ class _CustEditState extends State<CustEdit> {
   TextEditingController controllerAddress;
 
   void editData(){
-    var url="http://10.0.2.2/mall_e/custeditdata.php";
+    var url="http://172.20.10.3/mall_e/custeditdata.php";
     http.post(url,body: {
       "cust_id": widget.list[widget.index]['cust_id'],
-      "cust_name": controllerName.text,
-      "cust_email": controllerEmail.text,
-      "cust_pho": controllerPhone.text,
-      "cust_add": controllerAddress.text,
+      "name": controllerName.text,
+      "email": controllerEmail.text,
+      "phone": controllerPhone.text,
+      "address": controllerAddress.text,
 
     });
   }
@@ -35,10 +35,10 @@ class _CustEditState extends State<CustEdit> {
   @override
   void initState(){
     controllerName= new TextEditingController(text: widget.list[widget.index]['cust_id']);
-    controllerName= new TextEditingController(text: widget.list[widget.index]['cust_name']);
-    controllerPhone= new TextEditingController(text: widget.list[widget.index]['cust_pho']);
-    controllerEmail= new TextEditingController(text: widget.list[widget.index]['cust_email']);
-    controllerAddress= new TextEditingController(text: widget.list[widget.index]['cust_add']);
+    controllerName= new TextEditingController(text: widget.list[widget.index]['name']);
+    controllerPhone= new TextEditingController(text: widget.list[widget.index]['phone']);
+    controllerEmail= new TextEditingController(text: widget.list[widget.index]['email']);
+    controllerAddress= new TextEditingController(text: widget.list[widget.index]['address']);
     super.initState();
   }
   
@@ -89,7 +89,7 @@ class _CustEditState extends State<CustEdit> {
                     editData();
                     Navigator.of(context).push(
                         new MaterialPageRoute(
-                            builder: (BuildContext context)=>new CustList()
+                            builder: (BuildContext context)=>new AdminHome()
                         )
                     );
                   },

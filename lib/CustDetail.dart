@@ -15,7 +15,7 @@ class CustDetail extends StatefulWidget {
 class _CustDetailState extends State<CustDetail> {
 
   void deleteData(){
-    var url="http://10.0.2.2/mall_e/custdeleteData.php";
+    var url="http://172.20.10.3/mall_e/custdeleteData.php";
     http.post(url, body: {
       'cust_id': widget.list[widget.index]['cust_id']
     });
@@ -23,7 +23,7 @@ class _CustDetailState extends State<CustDetail> {
 
   void confirm(){
     AlertDialog alertDialog = new AlertDialog(
-      content: new Text("Are you sure want to delete'${widget.list[widget.index]['cust_name']}"
+      content: new Text("Are you sure want to delete'${widget.list[widget.index]['name']}"
           "? This action cannot be undo"),
       actions: <Widget>[
         new RaisedButton(
@@ -53,7 +53,7 @@ class _CustDetailState extends State<CustDetail> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(title: new Text("${widget.list[widget.index]['cust_name']}")),
+        appBar: new AppBar(title: new Text("${widget.list[widget.index]['name']}")),
         body: new Container(
           height: 280.0,
           padding: const EdgeInsets.all(20.0),
@@ -63,11 +63,11 @@ class _CustDetailState extends State<CustDetail> {
                 children: <Widget>[
 
                   new Padding(padding: const EdgeInsets.only(top: 25.0),),
-                  new Text(widget.list[widget.index]['cust_name'], style: new TextStyle(fontSize: 20.0),),
+                  new Text(widget.list[widget.index]['name'], style: new TextStyle(fontSize: 20.0),),
                   new Text("ID: ${widget.list[widget.index]['cust_id']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Phone: ${widget.list[widget.index]['cust_pho']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Email: ${widget.list[widget.index]['cust_email']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Address: ${widget.list[widget.index]['cust_add']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Phone: ${widget.list[widget.index]['phone']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Email: ${widget.list[widget.index]['email']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Address: ${widget.list[widget.index]['address']}", style: new TextStyle(fontSize: 18.0),),
                   new Padding(padding: const EdgeInsets.only(top: 25.0),),
 
                   new Row(

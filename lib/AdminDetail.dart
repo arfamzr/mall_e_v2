@@ -15,7 +15,7 @@ class AdminDetail extends StatefulWidget {
 class _AdminDetailState extends State<AdminDetail> {
 
   void deleteData(){
-    var url="http://10.0.2.2/mall_e/deleteData.php";
+    var url="http:// 172.20.10.3/mall_e/deleteData.php";
     http.post(url, body: {
       'admin_id': widget.list[widget.index]['admin_id']
     });
@@ -23,7 +23,7 @@ class _AdminDetailState extends State<AdminDetail> {
 
   void confirm(){
     AlertDialog alertDialog = new AlertDialog(
-      content: new Text("Are you sure want to delete '${widget.list[widget.index]['admin_name']}"),
+      content: new Text("Are you sure want to delete '${widget.list[widget.index]['name']}"),
       actions: <Widget>[
         new RaisedButton(
           child: new Text("DELETE", style: new TextStyle(color: Colors.white70),),
@@ -53,7 +53,7 @@ class _AdminDetailState extends State<AdminDetail> {
   @override
   Widget build(BuildContext context){
     return new Scaffold(
-        appBar: new AppBar(title: new Text("${widget.list[widget.index]['admin_name']}")),
+        appBar: new AppBar(title: new Text("${widget.list[widget.index]['name']}")),
         body: new Container(
           height: 280.0,
           padding: const EdgeInsets.all(20.0),
@@ -63,11 +63,11 @@ class _AdminDetailState extends State<AdminDetail> {
                 children: <Widget>[
 
                   new Padding(padding: const EdgeInsets.only(top: 25.0),),
-                  new Text(widget.list[widget.index]['admin_name'], style: new TextStyle(fontSize: 20.0),),
+                  new Text(widget.list[widget.index]['name'], style: new TextStyle(fontSize: 20.0),),
                   new Text("ID: ${widget.list[widget.index]['admin_id']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Phone: ${widget.list[widget.index]['admin_pho']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Email: ${widget.list[widget.index]['admin_email']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Address: ${widget.list[widget.index]['admin_add']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Phone: ${widget.list[widget.index]['phone']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Email: ${widget.list[widget.index]['email']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Address: ${widget.list[widget.index]['address']}", style: new TextStyle(fontSize: 18.0),),
                   new Padding(padding: const EdgeInsets.only(top: 25.0),),
 
                   new Row(

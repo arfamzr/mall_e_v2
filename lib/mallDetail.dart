@@ -15,7 +15,7 @@ class MallDetail extends StatefulWidget {
 class _MallDetailState extends State<MallDetail> {
 
   void deleteData(){
-    var url="http://10.0.2.2/mall_e/malldeleteData.php";
+    var url="http://172.20.10.3/mall_e/malldeleteData.php";
     http.post(url, body: {
       'mall_id': widget.list[widget.index]['mall_id']
     });
@@ -23,7 +23,7 @@ class _MallDetailState extends State<MallDetail> {
 
   void confirm(){
     AlertDialog alertDialog = new AlertDialog(
-      content: new Text("Are you sure want to delete '${widget.list[widget.index]['mall_name']}"),
+      content: new Text("Are you sure want to delete '${widget.list[widget.index]['name']}"),
       actions: <Widget>[
         new RaisedButton(
           child: new Text("DELETE", style: new TextStyle(color: Colors.white70),),
@@ -53,9 +53,9 @@ class _MallDetailState extends State<MallDetail> {
   @override
   Widget build(BuildContext context){
     return new Scaffold(
-        appBar: new AppBar(title: new Text("${widget.list[widget.index]['mall_name']}")),
+        appBar: new AppBar(title: new Text("${widget.list[widget.index]['name']}")),
         body: new Container(
-          height: 280.0,
+          height: 340.0,
           padding: const EdgeInsets.all(20.0),
           child: new Card(
             child: new Center(
@@ -63,13 +63,14 @@ class _MallDetailState extends State<MallDetail> {
                 children: <Widget>[
 
                   new Padding(padding: const EdgeInsets.only(top: 25.0),),
-                  new Text(widget.list[widget.index]['mall_name'], style: new TextStyle(fontSize: 20.0),),
-                  new Text("Mall ID: ${widget.list[widget.index]['mall_id']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Mall Phone: ${widget.list[widget.index]['mall_pho']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Mall Email: ${widget.list[widget.index]['mall_email']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Mall Address: ${widget.list[widget.index]['mall_add']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Mall Longitude: ${widget.list[widget.index]['longitude']}", style: new TextStyle(fontSize: 18.0),),
-                  new Text("Mall Latitude: ${widget.list[widget.index]['latitude']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text(widget.list[widget.index]['name'], style: new TextStyle(fontSize: 20.0),),
+                  new Padding(padding: const EdgeInsets.only(top: 25.0),),
+                  new Text("ID : ${widget.list[widget.index]['mall_id']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("No.Phone  : ${widget.list[widget.index]['phone']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Email  : ${widget.list[widget.index]['email']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Address  : ${widget.list[widget.index]['address']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Longitude  : ${widget.list[widget.index]['longitude']}", style: new TextStyle(fontSize: 18.0),),
+                  new Text("Latitude : ${widget.list[widget.index]['latitude']}", style: new TextStyle(fontSize: 18.0),),
                   new Padding(padding: const EdgeInsets.only(top: 25.0),),
 
                   new Row(

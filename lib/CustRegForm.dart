@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'CustLogin.dart';
 
 import 'auth.dart';
 class CustRegForm extends StatefulWidget {
@@ -17,16 +18,15 @@ class _CustRegFormState extends State<CustRegForm> {
   TextEditingController controllerPass = new TextEditingController();
 
   void addData() async{
-    var url ="http://10.0.2.2/mall_e/custadddata.php";
+    var url ="http://172.20.10.3/mall_e/custreg.php";
     Map<String,dynamic> user = await Auth.fetchAuth();
     print(user);
     var response = await http.post(url, body:{
-      "cust_name": controllerName.text,
-      "cust_email": controllerEmail.text,
-      "cust_pho": controllerPhone.text,
-      "cust_add": controllerAddress.text,
-      "cust_pass": controllerPass.text,
-      'admin_id':user['admin_id']
+      "name": controllerName.text,
+      "email": controllerEmail.text,
+      "phone": controllerPhone.text,
+      "address": controllerAddress.text,
+      "password": controllerPass.text,
     });
 
     if(response.statusCode ==200){
@@ -92,7 +92,11 @@ class _CustRegFormState extends State<CustRegForm> {
                   color: Colors.deepPurpleAccent,
                   onPressed: (){
                     addData();
-                    Navigator.pop(context);
+                    Navigator.of(context).push(
+                        new MaterialPageRoute(
+                            builder: (BuildContext context)=>new CustLogin(),
+                        )
+                    );
                   },
                 )
               ],

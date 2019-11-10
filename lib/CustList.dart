@@ -13,7 +13,7 @@ class CustList extends StatefulWidget {
 class _CustListState extends State<CustList> {
 
   Future<List> getData() async {
-    final response= await http.get("http://10.0.2.2/mall_e/custgetdata.php"); //if using real phone device, chg to your computer ip.
+    final response= await http.get("http://172.20.10.3/mall_e/custgetdata.php"); //if using real phone device, chg to your computer ip.
     return json.decode(response.body);
   }
   @override
@@ -64,7 +64,7 @@ class ListCust extends StatelessWidget{
             ),
             child: new Card(
               child: new ListTile(
-                title: new Text(list[i]['cust_name']),
+                title: new Text(list[i]['name']),
                 leading: new Icon(Icons.person),
                 subtitle: new Text("ID : ${list[i]['cust_id']}"),
               ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import './mallList.dart';
+import './AdminHome.dart';
 
 class MallEdit extends StatefulWidget {
 
@@ -21,13 +21,13 @@ class _MallEditState extends State<MallEdit> {
   TextEditingController controllerAddress;
 
   void editData(){
-    var url="http://10.0.2.2/mall_e/editdata.php";
+    var url="http://172.20.10.3/mall_e/editdata.php";
     http.post(url,body: {
       "mall_id": widget.list[widget.index]['mall_id'],
-      "mall_name": controllerName.text,
-      "mall_email": controllerEmail.text,
-      "mall_pho": controllerPhone.text,
-      "mall_add": controllerAddress.text,
+      "name": controllerName.text,
+      "email": controllerEmail.text,
+      "phone": controllerPhone.text,
+      "address": controllerAddress.text,
 
     });
   }
@@ -35,10 +35,10 @@ class _MallEditState extends State<MallEdit> {
   @override
   void initState(){
     controllerName= new TextEditingController(text: widget.list[widget.index]['mall_id']);
-    controllerName= new TextEditingController(text: widget.list[widget.index]['mall_name']);
-    controllerPhone= new TextEditingController(text: widget.list[widget.index]['mall_pho']);
-    controllerEmail= new TextEditingController(text: widget.list[widget.index]['mall_email']);
-    controllerAddress= new TextEditingController(text: widget.list[widget.index]['mall_add']);
+    controllerName= new TextEditingController(text: widget.list[widget.index]['name']);
+    controllerPhone= new TextEditingController(text: widget.list[widget.index]['phone']);
+    controllerEmail= new TextEditingController(text: widget.list[widget.index]['email']);
+    controllerAddress= new TextEditingController(text: widget.list[widget.index]['address']);
     super.initState();
   }
 
@@ -90,7 +90,7 @@ class _MallEditState extends State<MallEdit> {
                     editData();
                     Navigator.of(context).push(
                         new MaterialPageRoute(
-                            builder: (BuildContext context)=>new MallList()
+                            builder: (BuildContext context)=>new AdminHome()
                         )
                     );
                   },

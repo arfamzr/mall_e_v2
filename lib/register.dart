@@ -30,7 +30,7 @@ class _registerState extends State<register> {
             new Padding(padding: const EdgeInsets.all(15.0),),
 
             RaisedButton(
-              child: Text("Regular User"),
+              child: Text("New User register"),
               onPressed: ()=>Navigator.of(context).push(
                   new MaterialPageRoute(
                     builder: (BuildContext context)=> new CustRegForm(),

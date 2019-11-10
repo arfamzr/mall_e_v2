@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'AdminPage.dart';
 import 'MemberPage.dart';
-import 'login.dart';
+import 'LoginSelect.dart';
 
 void main(){
   runApp(new MaterialApp(
@@ -11,7 +11,7 @@ void main(){
     home: SplashScreen(),
     routes: <String, WidgetBuilder>{
       '/AdminPage': (BuildContext context)=> new AdminPage(),
-      '/MemberPage': (BuildContext context)=> new MemberPage(),
+      '/MemberPage': (BuildContext context)=> new CustPage(),
     },
     theme: new ThemeData(
         brightness: Brightness.dark,
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen>{
     // TODO: implement initState
     super.initState();
     Timer(Duration(seconds: 5), ()=> Navigator.of(context).push(
-      new MaterialPageRoute(builder: (BuildContext context) => new LoginPage())
+      new MaterialPageRoute(builder: (BuildContext context) => new LoginSelect())
     ));
   }
   @override
@@ -84,7 +84,7 @@ class _SplashScreenState extends State<SplashScreen>{
                     Padding(
                       padding: EdgeInsets.only(top: 20.0),
                     ),
-                    Text("Online Store \n For Everyone",style: TextStyle(
+                    Text("Application \n For Everyone",style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
                         fontWeight: FontWeight.bold)),

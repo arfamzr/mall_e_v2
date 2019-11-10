@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'MallLogin.dart';
 
 import 'auth.dart';
 class MallRegForm extends StatefulWidget {
@@ -19,18 +20,17 @@ class _MallRegFormState extends State<MallRegForm> {
   TextEditingController controllerPass = new TextEditingController();
 
   void addData() async{
-    var url ="http://10.0.2.2/mall_e/malladddata.php";
+    var url ="http://172.20.10.3/mall_e/mallreg.php";
     Map<String,dynamic> user = await Auth.fetchAuth();
     print(user);
     var response = await http.post(url, body:{
-      "mall_name": controllerName.text,
-      "mall_email": controllerEmail.text,
-      "mall_pho": controllerPhone.text,
-      "mall_add": controllerAddress.text,
+      "name": controllerName.text,
+      "email": controllerEmail.text,
+      "phone": controllerPhone.text,
+      "address": controllerAddress.text,
       "longitude": controllerLongitude.text,
       "latitude": controllerLatitude.text,
-      "mall_pass": controllerPass.text,
-      'admin_id':user['admin_id']
+      "password": controllerPass.text,
     });
 
     if(response.statusCode ==200){
@@ -110,7 +110,11 @@ class _MallRegFormState extends State<MallRegForm> {
                   color: Colors.deepPurpleAccent,
                   onPressed: (){
                     addData();
-                    Navigator.pop(context);
+                    Navigator.of(context).push(
+                        new MaterialPageRoute(
+                            builder: (BuildContext context)=>new MallLogin(),
+                        )
+                    );
                   },
                 )
               ],

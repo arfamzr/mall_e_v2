@@ -15,14 +15,14 @@ class _AdminAddDataState extends State<AdminAddData> {
   TextEditingController controllerPass = new TextEditingController();
 
   void addData(){
-    var url ="http://10.0.2.2/mall_e/adddata.php";
+    var url ="http:// 172.20.10.3/mall_e/adddata.php";
 
     http.post(url, body:{
-      "admin_name": controllerName.text,
-      "admin_email": controllerEmail.text,
-      "admin_pho": controllerPhone.text,
-      "admin_add": controllerAddress.text,
-      "admin_pass": controllerPass.text
+      "name": controllerName.text,
+      "email": controllerEmail.text,
+      "phone": controllerPhone.text,
+      "address": controllerAddress.text,
+      "password": controllerPass.text
     });
   }
   

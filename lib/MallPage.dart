@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import './AdminList.dart';
 import './CustList.dart';
 import './mallList.dart';
-import './EventList.dart';
 
-class AdminHome extends StatefulWidget {
+class MallPage extends StatefulWidget {
   @override
-  _AdminHomeState createState() => _AdminHomeState();
+  _MallPageState createState() => _MallPageState();
 }
 
-class _AdminHomeState extends State<AdminHome> {
+class _MallPageState extends State<MallPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
         padding: EdgeInsets.all(25.0),
         child: GridView.count(
-            crossAxisCount: 2,
+          crossAxisCount: 2,
           children: <Widget>[
             Card(
               margin: EdgeInsets.all(10.0),
@@ -81,11 +80,7 @@ class _AdminHomeState extends State<AdminHome> {
             Card(
               margin: EdgeInsets.all(10.0),
               child: InkWell(
-                onTap: ()=>Navigator.of(context).push(
-                    new MaterialPageRoute(
-                      builder: (BuildContext context)=> new EventList(),
-                    )
-                ),
+                onTap: (){},
                 splashColor: Colors.grey,
                 child: Center(
                   child: Column(
