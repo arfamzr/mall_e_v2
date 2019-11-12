@@ -13,13 +13,13 @@ class EventList extends StatefulWidget {
 class _EventListState extends State<EventList> {
 
   Future<List> getData() async {
-    final response= await http.get("http://172.20.10.3/mall_e/custgetdata.php"); //if using real phone device, chg to your computer ip.
+    final response= await http.get("http://172.20.10.3/mall_e/eventgetdata.php"); //if using real phone device, chg to your computer ip.
     return json.decode(response.body);
   }
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        appBar: new AppBar(title: new Text("Customer List"),
+        appBar: new AppBar(title: new Text("Event List"),
         ),
         floatingActionButton: new FloatingActionButton(
           child: new Icon(Icons.add),
@@ -35,7 +35,7 @@ class _EventListState extends State<EventList> {
             if(snapshot.hasError) print(snapshot.error);
 
             return snapshot.hasData
-                ? new ListCust(list: snapshot.data,)
+                ? new ListEvent(list: snapshot.data,)
                 : new Center(child: new CircularProgressIndicator(),);
           },
         )
@@ -44,10 +44,10 @@ class _EventListState extends State<EventList> {
   }
 }
 
-class ListCust extends StatelessWidget{
+class ListEvent extends StatelessWidget{
 
   final List list;
-  ListCust({this.list});
+  ListEvent({this.list});
 
   @override
   Widget build(BuildContext context){
@@ -65,7 +65,7 @@ class ListCust extends StatelessWidget{
             child: new Card(
               child: new ListTile(
                 title: new Text(list[i]['name']),
-                leading: new Icon(Icons.person),
+                leading: new Icon(Icons.event_available),
                 subtitle: new Text("ID : ${list[i]['event_id']}"),
               ),
             ),

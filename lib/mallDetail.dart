@@ -77,7 +77,7 @@ class _MallDetailState extends State<MallDetail> {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       new RaisedButton(
-                          child: new Text("EDIT"),
+                          child: new Text("Accept"),
                           color: Colors.greenAccent,
                           onPressed: ()=> Navigator.of(context).push(
                               new MaterialPageRoute(

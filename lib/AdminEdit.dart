@@ -34,7 +34,6 @@ class _AdminEditState extends State<AdminEdit> {
 
   @override
   void initState(){
-    controllerName= new TextEditingController(text: widget.list[widget.index]['admin_id']);
     controllerName= new TextEditingController(text: widget.list[widget.index]['name']);
     controllerPhone= new TextEditingController(text: widget.list[widget.index]['phone']);
     controllerEmail= new TextEditingController(text: widget.list[widget.index]['email']);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import './AdminHome.dart';
+import 'package:intl/intl.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 class EventEdit extends StatefulWidget {
 
@@ -16,31 +18,30 @@ class EventEdit extends StatefulWidget {
 class _EventEditState extends State<EventEdit> {
 
   TextEditingController controllerName;
-  TextEditingController controllerPhone;
-  TextEditingController controllerEmail;
-  TextEditingController controllerAddress;
+  TextEditingController controllerDate;
+  TextEditingController controllerTime;
 
   void editData(){
     var url="http://172.20.10.3/mall_e/custeditdata.php";
     http.post(url,body: {
       "event_id": widget.list[widget.index]['event_id'],
       "name": controllerName.text,
-      "time": controllerEmail.text,
-      "date": controllerPhone.text,
-      "mall": controllerAddress.text,
+      "time": controllerDate.text,
+      "date": controllerTime.text,
 
     });
   }
 
   @override
   void initState(){
-    controllerName= new TextEditingController(text: widget.list[widget.index]['event_id']);
     controllerName= new TextEditingController(text: widget.list[widget.index]['name']);
-    controllerPhone= new TextEditingController(text: widget.list[widget.index]['time']);
-    controllerEmail= new TextEditingController(text: widget.list[widget.index]['date']);
-    controllerAddress= new TextEditingController(text: widget.list[widget.index]['address']);
+    controllerDate= new TextEditingController(text: widget.list[widget.index]['time']);
+    controllerTime= new TextEditingController(text: widget.list[widget.index]['date']);
     super.initState();
   }
+
+  final format = DateFormat("yyyy-MM-dd");
+  final dateFormat = DateFormat("HH:mm");
 
   @override
   Widget build(BuildContext context) {
@@ -59,26 +60,28 @@ class _EventEditState extends State<EventEdit> {
                       labelText: "Name"
                   ),
                 ),
-                new TextField(
-                  controller: controllerPhone,
-                  decoration: new InputDecoration(
-                      hintText: "Phone No",
-                      labelText: "Phone"
-                  ),
+                Text('Basic date field (${format.pattern})'),
+                DateTimeField(controller: controllerDate,
+                    format: format,
+                    onShowPicker: (context, currentValue)async{
+                      return showDatePicker(
+                          context: context,
+                          firstDate: DateTime(1900),
+                          initialDate: currentValue ?? DateTime.now(),
+                          lastDate: DateTime(2100));
+                    }
                 ),
-                new TextField(
-                  controller: controllerEmail,
-                  decoration: new InputDecoration(
-                      hintText: "Email",
-                      labelText: "Email"
-                  ),
-                ),
-                new TextField(
-                  controller: controllerAddress,
-                  decoration: new InputDecoration(
-                      hintText: "Address",
-                      labelText: "Address"
-                  ),
+                Text('Basic time field (${dateFormat.pattern})'),
+                DateTimeField(
+                  controller: controllerTime,
+                  format: dateFormat,
+                  onShowPicker: (context, currentValue)async{
+                    final time = await showTimePicker(
+                        context: context,
+                        initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now())
+                    );
+                    return DateTimeField.convert(time);
+                  },
                 ),
                 new Padding(padding: const EdgeInsets.all(15.0),),
 

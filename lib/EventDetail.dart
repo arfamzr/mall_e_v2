@@ -15,7 +15,7 @@ class EventDetail extends StatefulWidget {
 class _EventDetailState extends State<EventDetail> {
 
   void deleteData(){
-    var url="http://172.20.10.3/mall_e/custdeleteData.php";
+    var url="http://172.20.10.3/mall_e/eventdeleteData.php";
     http.post(url, body: {
       'event_id': widget.list[widget.index]['event_id']
     });

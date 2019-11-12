@@ -24,6 +24,8 @@ class _EventAddDataState extends State<EventAddData> {
       "name": controllerName.text,
       "date": controllerDate.text,
       "time": controllerTime.text,
+      "shop_id": _myValue,
+      "mall_id": _mySelection,
       'admin_id':user['admin_id']
     });
 
@@ -38,19 +40,46 @@ class _EventAddDataState extends State<EventAddData> {
   final dateFormat = DateFormat("HH:mm");
 
   String _mySelection;
-  List data=[];
+  String _myValue;
   @override
   void initState(){
-    fetchData();
     super.initState();
   }
-  void fetchData() async{
+    fetchData() async{
+    List data = [];
     final response = await http.get('http://172.20.10.3/mall_e/eventlistmall.php');
     if (response.statusCode == 200) {
-      setState(() {
-        data = json.decode(response.body);
-      });
+      data = json.decode(response.body);
+      data = data.map((item){
+        print(item);
+        return new DropdownMenuItem<String>(
+          value: item["mall_id"].toString(),
+          child: new Text(
+            item["name"].toString(),
+          ),
+        );
+      }).toList();
     }
+    print(data);
+    return data;
+  }
+  shopData() async{
+    List data = [];
+    final response = await http.get('http://172.20.10.3/mall_e/eventlistshop.php');
+    if (response.statusCode == 200) {
+      data = json.decode(response.body);
+      data = data.map((item){
+        print(item);
+        return new DropdownMenuItem<String>(
+          value: item["shop_id"].toString(),
+          child: new Text(
+            item["name"].toString(),
+          ),
+        );
+      }).toList();
+    }
+    print(data);
+    return data;
   }
 
   @override
@@ -94,26 +123,53 @@ class _EventAddDataState extends State<EventAddData> {
                     return DateTimeField.convert(time);
                   },
                 ),
-                new DropdownButton<String>(
-                  isDense: true,
-                  hint: new Text("Mall Name"),
-                  value: _mySelection,
-                  onChanged: (String newValue){
-                    setState(() {
-                      _mySelection = newValue;
-                    });
-                    print(_mySelection);
+                new Padding(padding: const EdgeInsets.only(top: 20.0),),
+                new FutureBuilder(
+                  future: shopData(),
+                  builder: (context,snapshot){
+                    if(snapshot.hasError){
+                      return Text("error");
+                    } else {
+                      return DropdownButton<String>(
+                          isDense: true,
+                          hint: new Text("Shop Name"),
+                          value: _myValue,
+                          onChanged: (String newValue){
+                            print(newValue);
+                            setState(() {
+                              _myValue = newValue;
+                            });
+                            print(_myValue);
+                          },
+                          items: snapshot.data
+                      );
+                    }
                   },
-                  items: data.map((item){
-                    return new DropdownMenuItem<String>(
-                      value: item["id"].toString(),
-                      child: new Text(
-                        item["name"].toString(),
-                      ),
-                    );
-                  }).toList(),
                 ),
-
+                new Padding(padding: const EdgeInsets.only(top: 20.0),),
+                new FutureBuilder(
+                    future: fetchData(),
+                    builder: (context,snapshot){
+                      if(snapshot.hasError){
+                        return Text("error");
+                      } else {
+                        return DropdownButton<String>(
+                          isDense: true,
+                          hint: new Text("Mall Name"),
+                          value: _mySelection,
+                          onChanged: (String newValue){
+                            print(newValue);
+                            setState(() {
+                              _mySelection = newValue;
+                            });
+                            print(_mySelection);
+                          },
+                          items: snapshot.data
+                        );
+                      }
+                    },
+                ),
+                new Padding(padding: const EdgeInsets.only(top: 28.0),),
                 new RaisedButton(
                   child: new Text("Add Event"),
                   color: Colors.deepPurpleAccent,

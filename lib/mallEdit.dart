@@ -19,6 +19,8 @@ class _MallEditState extends State<MallEdit> {
   TextEditingController controllerPhone;
   TextEditingController controllerEmail;
   TextEditingController controllerAddress;
+  TextEditingController controllerLongitude;
+  TextEditingController controllerLatitude;
 
   void editData(){
     var url="http://172.20.10.3/mall_e/editdata.php";
@@ -28,6 +30,8 @@ class _MallEditState extends State<MallEdit> {
       "email": controllerEmail.text,
       "phone": controllerPhone.text,
       "address": controllerAddress.text,
+      "longitude": controllerLongitude.text,
+      "latitude": controllerLatitude.text,
 
     });
   }
@@ -39,6 +43,8 @@ class _MallEditState extends State<MallEdit> {
     controllerPhone= new TextEditingController(text: widget.list[widget.index]['phone']);
     controllerEmail= new TextEditingController(text: widget.list[widget.index]['email']);
     controllerAddress= new TextEditingController(text: widget.list[widget.index]['address']);
+    controllerLongitude= new TextEditingController(text: widget.list[widget.index]['longitude']);
+    controllerLatitude= new TextEditingController(text: widget.list[widget.index]['latitude']);
     super.initState();
   }
 
@@ -81,6 +87,20 @@ class _MallEditState extends State<MallEdit> {
                       labelText: "Address"
                   ),
                 ),
+                new TextField(
+                  controller: controllerLongitude,
+                  decoration: new InputDecoration(
+                      hintText: "Longitude",
+                      labelText: "Longitude"
+                  ),
+                ),
+                new TextField(
+                  controller: controllerLatitude,
+                  decoration: new InputDecoration(
+                      hintText: "Latitude",
+                      labelText: "Latitude"
+                  ),
+                ),
                 new Padding(padding: const EdgeInsets.all(15.0),),
 
                 new RaisedButton(
@@ -94,7 +114,7 @@ class _MallEditState extends State<MallEdit> {
                         )
                     );
                   },
-                )
+                ),
               ],
             ),
           ],

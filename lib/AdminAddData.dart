@@ -12,17 +12,17 @@ class _AdminAddDataState extends State<AdminAddData> {
   TextEditingController controllerEmail = new TextEditingController();
   TextEditingController controllerPhone = new TextEditingController();
   TextEditingController controllerAddress = new TextEditingController();
-  TextEditingController controllerPass = new TextEditingController();
+  TextEditingController controllerPassword = new TextEditingController();
 
   void addData(){
-    var url ="http:// 172.20.10.3/mall_e/adddata.php";
+    var url ="http://172.20.10.3/mall_e/adddata.php";
 
     http.post(url, body:{
       "name": controllerName.text,
       "email": controllerEmail.text,
       "phone": controllerPhone.text,
       "address": controllerAddress.text,
-      "password": controllerPass.text
+      "password": controllerPassword.text
     });
   }
   
@@ -66,7 +66,7 @@ class _AdminAddDataState extends State<AdminAddData> {
                   ),
                 ),
                 new TextField(
-                  controller: controllerPass,
+                  controller: controllerPassword,
                   obscureText: true,
                   decoration: new InputDecoration(
                       hintText: "Password",
